@@ -31,13 +31,11 @@ Writes to `--output-dir`:
 ## Docker
 
 ```bash
-docker build -t recon-benchmark .
-
 docker run --rm \
   -v /path/to/input:/data/input \
   -v /path/to/output:/data/output \
-  -e ZOOM=0.5 -e ITERATIONS=4 -e SUBSETS=5 -e VERBOSE=1 \
-  recon-benchmark
+  [-e ZOOM=0.5] [-e ITERATIONS=4] [-e SUBSETS=5] [-e VERBOSE=0] \
+  ghcr.io/christianhinge/recon
 ```
 
 Expects `/data/input/add.hs`, `/data/input/mult.hs`, `/data/input/prompts.hs`; writes results to `/data/output`. All env vars are optional (defaults: `ZOOM=0.5`, `ITERATIONS=4`, `SUBSETS=5`, `VERBOSE` unset).
