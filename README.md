@@ -38,4 +38,4 @@ docker run --rm \
   ghcr.io/christianhinge/recon
 ```
 
-Expects `/data/input/add.hs`, `/data/input/mult.hs`, `/data/input/prompts.hs`; writes results to `/data/output`. All env vars are optional (defaults: `ZOOM=0.5`, `ITERATIONS=4`, `SUBSETS=5`, `VERBOSE` unset).
+Expects `/data/input/add.[hs,s]`, `/data/input/mult.[hs,s]`, `/data/input/prompts.[hs,s]`; writes results to `/data/output`. All env vars are optional (defaults: `ZOOM=0.5`, `ITERATIONS=4`, `SUBSETS=5`, `VERBOSE` unset).
