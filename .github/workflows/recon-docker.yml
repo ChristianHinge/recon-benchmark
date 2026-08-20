@@ -30,7 +30,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/ChristianHinge/recon
+          images: ghcr.io/christianhinge/recon
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
@@ -47,5 +47,5 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=ghcr.io/ChristianHinge/recon:cache
-          cache-to: type=registry,ref=ghcr.io/ChristianHinge/recon:cache,mode=max
+          cache-from: type=registry,ref=ghcr.io/christianhinge/recon:cache
+          cache-to: type=registry,ref=ghcr.io/christianhinge/recon:cache,mode=max
