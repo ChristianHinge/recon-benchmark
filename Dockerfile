@@ -1,14 +1,14 @@
 # ── Stage 1: Build STIR ──────────────────────────────────────────────────────
-FROM ubuntu:22.04 AS builder
+FROM ubuntu:24.04 AS builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git cmake build-essential \
-    libboost-all-dev libhdf5-dev libfftw3-dev \
+    libboost-all-dev libhdf5-dev libfftw3-dev libncurses-dev \
     python3-dev python3-pip \
     swig libinsighttoolkit5-dev nlohmann-json3-dev \
  && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir numpy
+RUN pip install --break-system-packages --no-cache-dir numpy
 
 RUN git clone https://github.com/UCL/STIR \
  && cd STIR
@@ -21,24 +21,24 @@ RUN mkdir /build && cd /build \
  && make -j$(nproc) \
  && make install
 
-RUN pip install --no-cache-dir tqdm
+RUN pip install --break-system-packages --no-cache-dir tqdm
 
 # ── Stage 2: Runtime ─────────────────────────────────────────────────────────
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
-    libboost-filesystem1.74.0 \
-    libboost-program-options1.74.0 \
-    libboost-regex1.74.0 \
-    libboost-serialization1.74.0 \
-    libboost-thread1.74.0 \
-    libboost-iostreams1.74.0 \
-    libboost-date-time1.74.0 \
-    libhdf5-103 \
-    libhdf5-cpp-103 \
+    libboost-filesystem1.83.0 \
+    libboost-program-options1.83.0 \
+    libboost-regex1.83.0 \
+    libboost-serialization1.83.0 \
+    libboost-thread1.83.0 \
+    libboost-iostreams1.83.0 \
+    libboost-date-time1.83.0 \
+    libhdf5-103-1t64 \
+    libhdf5-cpp-103-1t64 \
     libfftw3-double3 \
-    libinsighttoolkit5.2 \
+    libinsighttoolkit5.3 \
  && rm -rf /var/lib/apt/lists/*
 
 # Copy STIR install (executables, libs, Python bindings) + pip packages

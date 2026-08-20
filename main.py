@@ -47,18 +47,18 @@ def run_reconstruction(recon_template, add_sino_path, mult_sino_path, prompts_si
     total_time = round(time.monotonic() - start, 3)
     peak_rss_mb = round(resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss / 1024, 1)  # ru_maxrss is KB on Linux
 
-    sorted_iters = sorted(subiteration_times)
+    cumulative = [subiteration_times[i] for i in sorted(subiteration_times)]
     prev = 0.0
-    deltas = {}
-    for i in sorted_iters:
-        deltas[i] = round(subiteration_times[i] - prev, 3)
-        prev = subiteration_times[i]
+    deltas = []
+    for t in cumulative:
+        deltas.append(round(t - prev, 3))
+        prev = t
 
     benchmark = {
         "total_time_sec": total_time,
         "peak_rss_mb": peak_rss_mb,
         "returncode": proc.returncode,
-        "subiteration_cumulative_sec": subiteration_times,
+        "subiteration_cumulative_sec": cumulative,
         "subiteration_delta_sec": deltas,
     }
     benchmark_path = os.path.join(os.path.dirname(out_image_path), 'benchmark.json')
