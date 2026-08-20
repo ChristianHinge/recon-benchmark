@@ -7,6 +7,7 @@ on:
     paths:
       - "main.py"
       - "Dockerfile"
+      - ".github/workflows/recon-docker.yml"
 
 jobs:
   build-push:
