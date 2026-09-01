@@ -7,8 +7,6 @@ PoissonLogLikelihoodWithLinearModelForMeanAndProjData Parameters:=
 input file := PROMPTS_SINO
 zoom := ZOOM
 
-maximum absolute segment number to process := 4
-
 ; additive projection data
 additive sinogram := ADD_SINO
 
