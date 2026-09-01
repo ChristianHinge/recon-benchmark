@@ -54,5 +54,6 @@ ENV VERBOSE=""
 ENV ZOOM="0.5"
 ENV ITERATIONS="4"
 ENV SUBSETS="5"
+ENV THREADS=""
 
-CMD python3 main.py --add-sino /data/input/add.hs --mult-sino /data/input/mult.hs --prompts-sino /data/input/prompts.hs --output-dir /data/output ${ZOOM:+--zoom $ZOOM} ${ITERATIONS:+--iterations $ITERATIONS} ${SUBSETS:+--subsets $SUBSETS} ${VERBOSE:+--verbose}
+CMD python3 main.py --add-sino /data/input/add.hs --mult-sino /data/input/mult.hs --prompts-sino /data/input/prompts.hs --output-dir /data/output ${ZOOM:+--zoom $ZOOM} ${ITERATIONS:+--iterations $ITERATIONS} ${SUBSETS:+--subsets $SUBSETS} ${THREADS:+--threads $THREADS} ${VERBOSE:+--verbose}
